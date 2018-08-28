@@ -7,7 +7,8 @@ class Homepage extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      location: ''
+      location: '',
+      results: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -25,6 +26,11 @@ class Homepage extends React.Component {
     // this.getWeather(this.state.location)
     this.getForecast(this.state.location)
   }
+  // weather (location, api) {
+  //   const doABunchOfStuff = { data: '', moreData: '', evenMoreData: '' }
+  //   const results = api !== null ? doABunchOfStuff : { error: 'you fucked up' }
+  //   return results
+  // }
   getWeather (location) {
     const loc = encodeURI(location)
     const url = `http://api.openweathermap.org/data/2.5/weather?q=${loc}&type=accurate&APPID=${WEATHER_API_KEY}`
@@ -37,10 +43,11 @@ class Homepage extends React.Component {
     const url = `http://api.openweathermap.org/data/2.5/forecast?q=${loc}&type=accurate&APPID=${WEATHER_API_KEY}&cnt=5`
     axios.get(url).then(results => {
       console.log(results)
+      this.setState({ results })
     })
   }
   render () {
-    const { location } = this.state
+    const { location, results } = this.state
     return (
       <div className='homepage'>
         <div className='form'>
@@ -55,6 +62,7 @@ class Homepage extends React.Component {
             />
             <button className='form-button' type='submit' disabled={!location}>
               Get Weather
+              { JSON.stringify(results) }
             </button>
           </form>
         </div>
