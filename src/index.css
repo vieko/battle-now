@@ -1,0 +1,39 @@
+/* SCAFFOLDING */
+body {
+  font-size: 16px;
+  margin: 0;
+}
+h1, h2, h3, h4, h5 { margin: 0; }
+
+/* COMPONENTS */
+.header {
+  display: flex;
+  flex-direction: row;
+  background-color: orange;
+  height: 8vh;
+}
+.homepage {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  height: 92vh; 
+}
+.homepage .form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.form-input,
+.form-button {
+  width: 10rem;
+  margin-bottom: 0.5rem;
+} 
