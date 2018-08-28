@@ -43,7 +43,7 @@ class Homepage extends React.Component {
     const url = `http://api.openweathermap.org/data/2.5/forecast?q=${loc}&type=accurate&APPID=${WEATHER_API_KEY}&cnt=5`
     axios.get(url).then(results => {
       console.log(results)
-      this.setState({ results })
+      this.setState({ results: results.data.list })
     })
   }
   render () {
@@ -62,9 +62,13 @@ class Homepage extends React.Component {
             />
             <button className='form-button' type='submit' disabled={!location}>
               Get Weather
-              { JSON.stringify(results) }
             </button>
           </form>
+          <ul>
+            {results && results.map(function (day) {
+              return <li key={day.dt}>{day.main.temp}</li>
+            })}
+          </ul>
         </div>
       </div>
     )
